@@ -24,7 +24,6 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Flyer::class, function (Faker\Generator $faker) {
-    static $password;
 
     return [
         'street'        => $faker->streetAddress,
