@@ -16,3 +16,4 @@ Route::get('/', function () {
 });
 
 Route::resource('flyers', 'FlyersController');
+Route::get('{zip}/{street}', 'Flyerscontroller@show');

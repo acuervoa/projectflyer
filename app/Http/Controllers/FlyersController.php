@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Flyer;
 use App\Http\Requests\FlyerRequest;
 
 
@@ -26,11 +27,25 @@ class FlyersController extends Controller
      */
     public function store(FlyerRequest $request)
     {
-        \App\Flyer::create($request->all());
+        Flyer::create($request->all());
 
-        //flash('Success!', 'Your flyer has been created.');
         flash()->success('Success!', 'Your flyer has been created.');
         return redirect()->back(); //temporary
 
+    }
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param int   $id
+     * @return Response
+     */
+    public function show($zip, $street)
+    {
+
+        $flyer =  Flyer::locatedAt($zip, $street)->first();
+
+        return view('flyers.show', compact('flyer'));
     }
 }
