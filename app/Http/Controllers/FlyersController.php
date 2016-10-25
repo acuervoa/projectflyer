@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Flyer;
-use App\Http\Requests\ChangeFlyerRequest;
+use App\Http\Requests\AddPhotoRequest;
 
 use App\Photo;
 use App\Http\Requests\FlyerRequest;
@@ -72,25 +72,19 @@ class FlyersController extends Controller
     /**
      * Apply a photo to referenced flyer.
      *
-     * @param string        $zip
-     * @param string        $street
-     * @param ChangeFlyerRequest       $request
+     * @param string          $zip
+     * @param string          $street
+     * @param AddPhotoRequest $request
      *
      * @return string
      */
-    public function addPhoto($zip, $street, ChangeFlyerRequest $request)
+    public function addPhoto($zip, $street, AddPhotoRequest $request)
     {
-
-        $photo = $this->makePhoto($request->file('photo'));
+        $photo = Photo::fromFile($request->file('photo'));//->upload();
 
         Flyer::locatedAt($zip, $street)->addPhoto($photo);
 
     }
 
 
-    public function makePhoto(UploadedFile $file)
-    {
-        return Photo::named($file->getClientOriginalName())
-            ->move($file);
-    }
 }

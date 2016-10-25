@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Flyer;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ChangeFlyerRequest extends FormRequest
+class AddPhotoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
