@@ -2,6 +2,12 @@
 
 @section('content')
 
+    <form method="post" action="logout">
+        {!! csrf_field() !!}
+        <input type="submit" value="submit">
+    </form>
+
+
     <div class="jumbotron">
         <h1>Project Flyer</h1>
 

@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('pages.home');
 });
 
+Auth::routes();
+
 Route::resource('flyers', 'FlyersController');
 Route::get('{zip}/{street}', 'Flyerscontroller@show');
 Route::post('{zip}/{street}/photos',['as' => 'store_photo_path', 'uses' =>  'Flyerscontroller@addPhoto']);
+
